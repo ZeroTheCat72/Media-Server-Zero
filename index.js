@@ -2,8 +2,6 @@ const { readdir } = require('fs').promises;
 const express = require('express');
 const app = express();
 const port = 3001;
-const cors = require('cors');
-const mm = require('music-metadata');
 const path = require('path');
 const ROOTX = path.resolve('root') + '/';
 // seperation
