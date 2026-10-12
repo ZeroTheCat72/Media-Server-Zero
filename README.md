@@ -1,12 +1,8 @@
 # Media Server Project
 
-
-
 This project is one of my first ever portfolio projects I made, ZeroTheCat72.
 
-The most recent version of the Repository is October 12, 2026.
-
-
+Made with React & Express JS v5.
 
 # Notes
 
@@ -14,9 +10,7 @@ node_modules is NOT included in the folder; I removed it to free up some space. 
 
 `npm install express`
 
-A huge mistake I made while working on this project was not using Git. It could have prevented some issues, but alas. And unfortunately the history of the project may be long gone; I'll summarize it:
-
-I just wasted a lot of time; I could have finished this in 2-3 weeks, or even one, but it took me a whole month. Im a huge time waster.
+A huge mistake I made while working on this project was not using Git. It could have prevented some issues, but alas. And now the history of the project is long gone.
 
 # How to use
 
@@ -27,6 +21,7 @@ The movies folder also has an artwork folder inside, so if you have a movie and 
 # Next to do:
 
 Add Authentication, even if its pretty simple.
+Maybe a dark/light mode switch
 
 ## Fixed:
 * Fixed critical security issues relating to accessing the server outside the root context. This patch limits the download and fetching from the fileExplorer to only from inside the root folder. Previously, you'd be able to traverse the whole system.
