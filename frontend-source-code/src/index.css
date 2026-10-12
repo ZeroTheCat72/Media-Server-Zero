@@ -1,0 +1,91 @@
+:root {
+	--backgroundC: rgb(10, 10, 10);
+	--backgroundCdark: rgb(13, 13, 13);
+	--foregroundC: rgb(255, 255, 255);
+	background-color: var(--backgroundC);
+	color: var(--foregroundC);
+	font-family: 'Segoe Ui', Helvetica
+}
+html {
+   scroll-behavior: smooth;
+}
+nav {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.section {
+	background-color: var(--backgroundCdark)
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:visited {
+	color: white
+}
+
+.section {
+	display: flex;
+	padding: 10px;
+	max-height: 250px;
+	gap: 12px;
+	overflow-x: scroll;
+}
+
+video, img {
+	height: 200px;
+}
+
+::-webkit-scrollbar {
+	background-color: black;
+}
+::-webkit-scrollbar-thumb {
+	background-color: grey;
+}
+#fileExplorerBtn {
+	cursor: pointer;
+}
+.file, .folder, .dirBtn {
+	aspect-ratio: 6/1;
+	overflow-y: hidden;
+	width: 400px;
+	overflow-x: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 4px;
+	margin: 1px;
+	cursor: pointer;
+}
+.folder {
+	border: 1px solid gold;
+}
+.file {
+	border: 1px solid white;
+}
+.dirBtn {
+	border: 1px solid blue;
+}
+#directoryContents {
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+hr {
+	border: 4px solid var(--backgroundCdark);
+	margin: 24px 0 24px 0;
+}
+
+@media (max-width: 650px) {
+	#navbar h2 {
+		font-size: 20px;
+	}
+
+	#directoryContents audio {
+		width: 100%;
+	}
+}

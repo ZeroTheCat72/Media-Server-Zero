@@ -1,0 +1,101 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+
+console.log('I think I found a glue')
+
+function File({format, file}) {
+	if (format == 'file explorer') {
+		return (
+			<div className={file.isDir ? 'folder' : 'file'}>
+			<h3>{file.isDir ? `📁 ${file.name}` : `📄 ${file.name}`}</h3>
+			</div>)
+	} else if (format == 'picture') {
+		if (!file.isDir) return (
+			<div className='pictureTile'>
+			{/.mp4$/.test(file.name) ? <video controls src={`http://localhost:3001/pictures/${file.name}`} /> :  <img src={`http://localhost:3001/pictures/${file.name}`} />}
+			</div>
+		)
+	} else if (format == 'movie'){
+		return (
+			<div className='movieTile'>
+			<img src={`http://localhost:3001/movies/artwork/${file.name}`} />
+			</div>
+		)
+	}
+}
+
+function toggleExplorer(whatSire = true) {
+  const root = document.getElementById('root');
+  const tab = document.getElementById('fileExplorerTab');
+
+  if (whatSire) {
+  	root.style.display = 'none';
+  	tab.style.display = 'block';
+  } else {
+	  root.style.display = 'block'
+	  tab.style.display = 'none'
+  }
+
+}
+
+async function fetchFiles(dir, includeFolders=true) {
+	const response = await fetch(`http://localhost:3001/fileExplorer/${dir}`)
+	let resJSed = await response.json()
+	if (!includeFolders) return resJSed.filter((file) => !file.isDir)
+	return resJSed
+}
+
+async function downloadPlz () {
+	
+}
+
+function App() {
+	const [tab, setTab] = useState('Movies')
+	const [images, setImages] = useState([]);
+	const [movies, setMovies] = useState([]);
+	const [dir, setDir] = useState([]);
+	useEffect(() => {
+		async function loadFiles(state, what, wantFolders=false) {
+    		const files = await fetchFiles(what, wantFolders);
+    		state(files);
+			console.log(files);
+  		}
+  		loadFiles(setImages, 'rootBocchSkippictures');
+		loadFiles(setMovies, 'rootBocchSkipmoviesBocchSkipartwork')
+		loadFiles(setDir, 'root', true)
+	}, [])
+
+  return (
+  	<>
+		<nav id='navbar'>
+			<a href='#Movies'><h2 onClick={() => {toggleExplorer(false)}} className={tab == 'Movies' ? 'selected' : ''}>Movies</h2></a>
+	  		<a href='#Music'><h2  onClick={() => {toggleExplorer(false)}}className={tab == 'Music' ? 'selected' : ''}>Music</h2></a>
+	  		<a href='#Pictures'><h2  onClick={() => {toggleExplorer(false)}}className={tab == 'Pictures' ? 'selected' : ''}>Pictures</h2></a>
+	  		<h2 onClick={toggleExplorer} id='fileExplorerBtn' className={tab == 'Explorer' ? 'selected' : ''}>File Explorer</h2>
+	    </nav>
+	  	<hr />
+	  	<div id='root'>
+			<h1 id='Movies'>Movies</h1>
+	  		<div className='section'>
+	  		{movies.length > 0 ? movies.map((movie) => <File format='movie' file={movie} />) : ''}
+	   	 	</div>
+			<h1 id='Music'>Music</h1>
+	  		<div className='section'></div>
+	  		<h1 id='Pictures'>Pictures</h1>
+	  		<div className='section'>
+	  		{images.map((image) => <File format='picture' file={image} />)}
+	  		</div>
+	  	</div>
+	  	<div id='fileExplorerTab' style={{display: 'none'}}>
+	  		<h1>{typeof dir == 'string' ? dir.replaceAll(/BocchSkip/g, '/') : 'ERROR: directory is not a string'}</h1>
+	  		<div id='directoryContents'>
+	  			{dir.map((iFile) => <File format='file explorer' file={iFile} />)}
+	  		</div>	
+	  </div>
+	</>
+  )
+}
+
+
+
+export default App
