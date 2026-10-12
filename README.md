@@ -26,6 +26,7 @@ The movies folder also has an artwork folder inside, so if you have a movie and 
 
 # Next to do:
 I'll be fixing some security bugs soon. ✅
+Fixed critical security issues relating to accessing the server outside the root context. This patch limits the download and fetching from the fileExplorer to only from inside the root folder. Previously, you'd be able to traverse the whole system.
 
 ## Thank you for watching my dream.
 
