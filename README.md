@@ -4,7 +4,7 @@
 
 This project is one of my first ever portfolio projects I made, ZeroTheCat72.
 
-As of October 12, 2026, this is the latest version I'll be uploading here to this repo.
+The most recent version of the Repository is October 12, 2026.
 
 
 
@@ -20,15 +20,13 @@ I just wasted a lot of time; I could have finished this in 2-3 weeks, or even on
 
 # How to use
 
-The project runs on port 3001, preferably LAN, I don't believe its secure otherwise. Any files you want put them inside root, make your own folders inside, whatever. The pictures, music, and movie folders already available are used to present content the moment you open the site.
+The project runs on port 3001, preferably LAN, I don't believe its secure otherwise, though I might add authentication eventually. Any files you want put them inside root, make your own folders inside, whatever. The pictures, music, and movie folders already available are used to present content the moment you open the site.
 
 The movies folder also has an artwork folder inside, so if you have a movie and an artwork, make sure they have the same name. (with different file extensions of course.)
 
 # Next to do:
-I'll be fixing some security bugs soon. ✅
-Fixed critical security issues relating to accessing the server outside the root context. This patch limits the download and fetching from the fileExplorer to only from inside the root folder. Previously, you'd be able to traverse the whole system.
 
-## Thank you for watching my dream.
+Add Authentication, even if its pretty simple.
 
-(Deltarune Reference)
-
+## Fixed:
+* Fixed critical security issues relating to accessing the server outside the root context. This patch limits the download and fetching from the fileExplorer to only from inside the root folder. Previously, you'd be able to traverse the whole system.
