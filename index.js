@@ -4,8 +4,8 @@ const app = express();
 const port = 3001;
 const cors = require('cors');
 const mm = require('music-metadata');
-app.use(cors({origin: 'http://localhost:5173'}))
-
+const path = require('path');
+const ROOTX = path.resolve('root') + '/';
 // seperation
 
 async function getFiles(dir) {
@@ -15,16 +15,20 @@ async function getFiles(dir) {
 
 // seperation
 
+
 app.use(express.static('dist'))
 
 app.get('/fileExplorer', async (req, res) => {
+	const requestedPath = path.resolve(req.query.dir) + '/';
+	console.log(requestedPath)
+	if (!requestedPath.startsWith(ROOTX)) throw new Error('Hell no.');
 	let dirContents = await getFiles(req.query.dir);
 	res.json(dirContents);
 })
 
-const lockDownAccessRegex = new RegExp('../')
-
 app.get('/download', (req, res) => {
+	const requestedPath = path.resolve(req.query.path) + '/';
+	if (!requestedPath.startsWith(ROOTX)) throw new Error('No.')
 	res.download(req.query.path, undefined)
 })
 
